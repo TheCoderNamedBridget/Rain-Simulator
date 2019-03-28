@@ -1,0 +1,37 @@
+var rainDrop = function(x,y,speed) {
+    this.x = x;
+    this.y = y;
+    this.speed = speed;
+};
+
+var raindrops = new Array(100);
+
+for(var i = 0;i < raindrops.length;i++){
+    raindrops[i] = new rainDrop(random(0,width),random(0,height),random(2,5));
+}
+
+rainDrop.prototype.draw = function() {
+    noStroke();
+    fill(0, 200, 255);
+    ellipse(this.x,this.y, 10, 10);
+};
+rainDrop.prototype.move = function(){
+    this.y += this.speed;
+    this.x += random(-2,2);
+};
+draw = function() {
+    background(204, 247, 255);
+    for(var i = 0;i < raindrops.length;i++){
+        raindrops[i].draw();
+    }
+    for(var i = 0;i < raindrops.length;i++){
+        raindrops[i].move();
+        if(raindrops[i].y >=400){
+            raindrops[i] = new rainDrop(random(0,width),0,random(2,5));
+        }
+    }
+    
+};
+    
+ 
+
